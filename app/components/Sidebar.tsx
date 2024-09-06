@@ -4,7 +4,7 @@ import { FaArrowRight } from "react-icons/fa6";
 export default function Sidebar() {
   return (
     <div>
-      <div className="bg-base-300 hidden min-h-screen rounded-md p-4 lg:block">
+      <div className="hidden min-h-screen w-80 rounded-md bg-base-300 p-4 lg:block">
         <div className="flex items-center justify-between px-6 pb-4 text-gray-400">
           <div className="flex items-center gap-4 text-white">
             <IoLibrary size={25} />
@@ -17,7 +17,7 @@ export default function Sidebar() {
             <FaArrowRight size={20} />
           </span>
         </div>
-        <ul className="menu text-base-content w-80">
+        <ul className="menu text-base-content">
           <li>
             <a>Sidebar Item 1</a>
           </li>

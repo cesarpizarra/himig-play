@@ -2,6 +2,7 @@ import React from "react";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import Play from "../components/sections/Play";
+import Rightbar from "../components/Rightbar";
 
 export default function HimigLayout({
   children,
@@ -14,6 +15,7 @@ export default function HimigLayout({
       <div className="flex gap-0 px-4 lg:gap-2">
         <Sidebar />
         {children}
+        <Rightbar />
       </div>
       <Play />
     </div>

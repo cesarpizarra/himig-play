@@ -29,7 +29,7 @@ export default function Play() {
             <h3 className="text-sm">Enchanted</h3>
             <h1 className="text-xs">Taylor Swift</h1>
           </div>
-          <FaCheckCircle className="text-primary" />
+          <FaCheckCircle className="text-success" />
         </div>
         <div className="flex items-center gap-3 md:hidden">
           <span data-tip="Play" className="tooltip tooltip-top cursor-pointer">

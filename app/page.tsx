@@ -1,7 +1,9 @@
+"use client";
 import Image from "next/image";
 import { FaHeadphones } from "react-icons/fa";
 import Footer from "./components/Footer";
-import Link from "next/link";
+import { signIn } from "next-auth/react";
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-dark">
@@ -13,6 +15,7 @@ export default function Home() {
             height={500}
             alt="Logo"
             className="hidden md:block"
+            priority
           />
 
           <div className="flex max-w-md flex-col items-center gap-5 text-center text-white">
@@ -27,18 +30,18 @@ export default function Home() {
               Spotify API, offering a seamless experience to discover, play, and
               enjoy your favorite tunes
             </p>
-            <Link
-              href="/himig/home"
-              className="inline-flex items-center gap-2 rounded-md border-2 border-gray-700 p-2"
+            <button
+              onClick={() => signIn()}
+              className="btn btn-ghost inline-flex items-center gap-2 rounded-md border-2 border-gray-700 p-2"
             >
               <Image
-                src="/google-icon.svg"
+                src="/spotify-icon.svg"
                 width={20}
                 height={20}
-                alt="Google Logo"
+                alt="Spotify Logo"
               />
-              Continue with Google
-            </Link>
+              Login with Spotify.
+            </button>
           </div>
         </div>
       </div>

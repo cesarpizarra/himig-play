@@ -1,17 +1,26 @@
+"use client";
+import { useSession, signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { FaHome, FaSearch } from "react-icons/fa";
 import { IoIosNotifications } from "react-icons/io";
 import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
 export default function Header() {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+  const handleLogout = async () => {
+    await signOut({ redirect: false });
+    router.push("/");
+  };
   return (
-    <header>
+    <header className="sticky top-0 z-50 bg-dark">
       <nav className="navbar py-4">
         <div className="navbar-start">
-          <a href="#">
+          <Link href="/himig/home" className="justify-between">
             <Image src="/logo.png" width={50} height={50} alt="logo" />
-          </a>
+          </Link>
 
           <div className="ml-5 flex items-center gap-3">
             <span
@@ -47,32 +56,40 @@ export default function Header() {
         </div>
         <div className="navbar-end">
           <div data-tip="What's New?" className="tooltip tooltip-bottom">
-            <div className="btn btn-circle mr-5 text-white">
+            <button className="btn btn-circle mr-5 text-white">
               <IoIosNotifications size={25} />
-            </div>
+              <span className="badge badge-secondary absolute -left-9 top-5 text-white">
+                New
+              </span>
+            </button>
           </div>
           <div className="dropdown dropdown-end">
-            <div
+            <button
               tabIndex={0}
               role="button"
               className="avatar btn btn-circle btn-ghost bg-primary"
             >
-              <h1 className="text-xl uppercase text-white">C</h1>
-            </div>
+              {status === "loading" ? (
+                <span className="loading loading-spinner loading-xs"></span>
+              ) : (
+                <h1 className="text-xl uppercase text-white">
+                  {session?.user?.name?.substring(0, 1)}
+                </h1>
+              )}
+            </button>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+              className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-base-100 p-2 shadow"
             >
               <li>
-                <a className="justify-between">
+                <Link href="/himig/profile" className="justify-between">
                   Profile
-                  <span className="badge">New</span>
-                </a>
+                </Link>
               </li>
               <li>
                 <a>Settings</a>
               </li>
-              <li>
+              <li onClick={handleLogout} className="border-t border-gray-700">
                 <a>Logout</a>
               </li>
             </ul>
