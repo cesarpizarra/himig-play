@@ -1,19 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { Profile } from "../types/profile";
+import { getProfile } from "../services/userService";
 
-export function useProfile() {
-  const { data, isLoading, error } = useQuery<Profile>({
+// Hook to get user profile
+export const useProfile = () => {
+  return useQuery<Profile>({
     queryKey: ["profile"],
-    queryFn: async () => {
-      const response = await axios.get<Profile>("/api/spotify/me");
-      return response.data;
-    },
+    queryFn: getProfile,
   });
-
-  return {
-    data,
-    isLoading,
-    error,
-  };
-}
+};

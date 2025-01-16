@@ -5,4 +5,5 @@ export type Profile = {
     href: string;
     total: number;
   };
+  images: Array<{ url: string }>;
 };

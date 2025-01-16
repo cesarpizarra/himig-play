@@ -1,6 +1,5 @@
 "use client";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 const dummyData = [
   { id: 1, name: "Liked Songs" },
@@ -26,19 +25,6 @@ const colors: string[] = [
 
 export default function Home() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-
-  useEffect(() => {
-    const fetchSpotifyTracks = async () => {
-      try {
-        const response = await axios.get("/api/spotify/me");
-        console.log("Response", response);
-      } catch (error) {
-        console.error("Error:", error);
-      }
-    };
-
-    fetchSpotifyTracks();
-  }, []);
 
   return (
     <section className="min-h-screen w-full rounded-md bg-base-200">

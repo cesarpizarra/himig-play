@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { FaHeadphones } from "react-icons/fa";
-import Footer from "./components/Footer";
+import Footer from "./components/layout/Footer";
 import { signIn } from "next-auth/react";
 
 export default function Home() {
@@ -21,7 +21,7 @@ export default function Home() {
           <div className="flex max-w-md flex-col items-center gap-5 text-center text-white">
             <FaHeadphones size={30} />
             <h1 className="text-2xl font-bold">
-              Millions of songs free on{" "}
+              Stream your favorite music on{" "}
               <span className="block text-primary">Himig Play.</span>
             </h1>
 
