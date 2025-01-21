@@ -28,12 +28,14 @@ export default function Header() {
             <span
               className="tooltip tooltip-bottom cursor-pointer"
               data-tip="Go back"
+              onClick={() => router.back()}
             >
               <MdArrowBackIos size={25} />
             </span>
             <span
               className="tooltip tooltip-bottom cursor-pointer"
               data-tip="Go forward"
+              onClick={() => router.forward()}
             >
               <MdArrowForwardIos size={25} />
             </span>
@@ -57,14 +59,6 @@ export default function Header() {
           </label>
         </div>
         <div className="navbar-end">
-          <div data-tip="What's New?" className="tooltip tooltip-bottom">
-            <button className="btn btn-circle mr-5 text-white">
-              <IoIosNotifications size={25} />
-              <span className="badge badge-secondary absolute -left-9 top-5 text-white">
-                New
-              </span>
-            </button>
-          </div>
           <div className="dropdown dropdown-end">
             <button
               tabIndex={0}
@@ -95,7 +89,9 @@ export default function Header() {
                 </Link>
               </li>
               <li>
-                <a>Settings</a>
+                <Link href="/himig/settings" className="justify-between">
+                  Settings
+                </Link>
               </li>
               <li onClick={handleLogout} className="border-t border-gray-700">
                 <a>Logout</a>
