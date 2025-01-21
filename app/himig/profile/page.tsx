@@ -2,43 +2,38 @@
 import Error from "@/app/components/common/Error";
 import Loading from "@/app/components/common/Loading";
 import { useProfile } from "@/app/hooks/useProfile";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaRegUser } from "react-icons/fa";
-import ColorThief from "colorthief";
 import {
   useFollowed,
-  useTopArtists,
+  useTop3Artists,
   useTopTracks,
 } from "@/app/hooks/useSpotify";
 import TopTracksSection from "@/app/components/sections/TopTracks";
 import TopArtistsSection from "@/app/components/sections/TopArtists";
 import FollowedArtistsSection from "@/app/components/sections/Followed";
+import { getDominantColor } from "@/app/util/colorUtil";
 
 export default function UserProfile() {
   const { data: profile, isLoading, error } = useProfile();
-  const { data: topArtists, isLoading: topLoading } = useTopArtists();
+  const { data: topArtists, isLoading: topLoading } = useTop3Artists();
   const { data: topTracks, isLoading: trackLoading } = useTopTracks();
   const { data: followed, isLoading: followedLoading } = useFollowed();
-
   const [bgColor, setBgColor] = useState<string>("#4b5563");
-  const imgRef = useRef<HTMLImageElement | null>(null);
 
   useEffect(() => {
-    if (profile && profile.images.length > 0 && imgRef.current) {
-      const img = new Image();
-      img.crossOrigin = "Anonymous";
-      img.src = profile?.images[0]?.url || "";
+    const fetchColor = async () => {
+      if (profile && profile.images.length > 0) {
+        try {
+          const color = await getDominantColor(profile.images[0].url);
+          setBgColor(color);
+        } catch (err) {
+          console.error(err);
+        }
+      }
+    };
 
-      img.onload = () => {
-        const colorThief = new ColorThief();
-        const dominantColor = colorThief.getColor(img);
-        setBgColor(`rgb(${dominantColor.join(",")})`);
-      };
-
-      img.onerror = (err) => {
-        console.error("Error loading image:", err);
-      };
-    }
+    fetchColor();
   }, [profile]);
 
   if (isLoading) return <Loading />;
@@ -55,7 +50,6 @@ export default function UserProfile() {
       >
         {profile && profile?.images.length > 0 ? (
           <img
-            ref={imgRef}
             src={profile?.images[0]?.url}
             alt={profile?.display_name}
             className="h-32 w-32 rounded-full object-cover"
