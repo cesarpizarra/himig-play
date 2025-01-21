@@ -25,11 +25,14 @@ const FollowedArtistsSection: React.FC<Props> = ({
           <SkeletonLoader count={4} itemClassName="custom-item-class" />
         ) : (
           following?.map((artist) => (
-            <div key={artist.id} className="flex flex-col items-center">
+            <div
+              key={artist.id}
+              className="flex transform cursor-pointer flex-col items-center p-2 transition-transform duration-200 ease-in-out hover:scale-105 hover:bg-base-100"
+            >
               <img
                 src={artist.images[0]?.url}
                 alt={artist.name}
-                className="h-32 w-32 transform rounded-full object-cover shadow-lg transition-transform duration-200 ease-in-out hover:scale-105 md:h-40 md:w-40"
+                className="h-32 w-32 rounded-full object-cover shadow-lg md:h-40 md:w-40"
               />
               <div className="mt-2 text-center text-sm font-semibold text-white">
                 <h3>{artist.name}</h3>
