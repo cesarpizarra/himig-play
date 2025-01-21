@@ -16,7 +16,7 @@ export default function DefaultLayout({
         <div className="hidden w-full max-w-sm lg:block">
           <Sidebar />
         </div>
-        <div className="h-full flex-1 overflow-y-auto bg-base-300">
+        <div className="h-full flex-1 overflow-hidden overflow-y-auto bg-base-300">
           {children}
         </div>
         <div className="hidden w-full max-w-sm lg:block">
