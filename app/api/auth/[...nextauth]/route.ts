@@ -14,8 +14,11 @@ interface CustomToken extends JWT {
 export const authOptions: NextAuthOptions = {
   providers: [
     SpotifyProvider({
-      authorization:
-        "https://accounts.spotify.com/authorize?scope=user-read-email,user-follow-read,user-top-read,playlist-read-private,playlist-modify-private,playlist-modify-public,user-library-read",
+      authorization: `https://accounts.spotify.com/authorize?scope=streaming,user-read-email,user-follow-read,user-top-read,
+      playlist-read-private,playlist-modify-private,playlist-modify-public,
+      user-library-read,user-read-private,user-read-currently-playing,
+      user-modify-playback-state,user-read-playback-state,
+      user-read-recently-played`,
       clientId: process.env.SPOTIFY_CLIENT_ID || "",
       clientSecret: process.env.SPOTIFY_CLIENT_SECRET || "",
       token: "https://accounts.spotify.com/api/token",
