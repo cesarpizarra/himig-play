@@ -5,6 +5,7 @@ export type DefaultItem = {
   images: Array<{ url: string }>;
   external_urls: { spotify: string };
   type: string;
+  uri: string;
 };
 
 export type DefaultItem2 = {
@@ -17,6 +18,7 @@ export type DefaultItem2 = {
   total_tracks: number;
   type: string;
   id: string;
+  uri: string;
 };
 
 export type PlaylistResponse = {
@@ -42,6 +44,7 @@ export type AlbumById = {
       id: string;
       name: string;
       duration_ms: number;
+      uri: string;
     }>;
   };
   type: string;
@@ -62,6 +65,7 @@ export type PlaylistById = {
         id: string;
         name: string;
         duration_ms: number;
+        uri: string;
       };
     }>;
   };
@@ -72,9 +76,11 @@ export type PlaylistById = {
 export type TopArtist = {
   id: string;
   name: string;
+  artists: Array<{ name: string; id: string; uri: string }>;
   images: Array<{ url: string }>;
   external_urls: { spotify: string };
   type: string;
+  uri: string;
 };
 
 export type TopTrack = {
@@ -82,9 +88,12 @@ export type TopTrack = {
   name: string;
   album: {
     images: Array<{ url: string }>;
+    name: string;
   };
   artists: Array<{ name: string }>;
   external_urls: { spotify: string };
+  duration_ms: number;
+  uri: string;
 };
 
 export type CurrentPlayingTrack = {
@@ -96,7 +105,7 @@ export type CurrentPlayingTrack = {
       images: Array<{ url: string }>;
       external_urls: { spotify: string };
       release_date: string;
-      release_date_precision: string;
+      release_date_precision?: string;
     };
     artists: Array<{
       name: string;
@@ -112,6 +121,7 @@ export type LikeSongsResponse = {
       album: DefaultItem2;
       name: string;
       duration_ms: number;
+      uri: string;
     };
   }>;
   total: number;
