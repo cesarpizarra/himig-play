@@ -110,12 +110,33 @@ export const getAlbumById = async (id: string) => {
   }
 };
 
+export const getArtistAlbum = async (id: string) => {
+  try {
+    const response = await axiosInstance.get(`/api/spotify/artist/album/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error getting album", error);
+    throw error;
+  }
+};
+
 export const getPlaylistById = async (id: string) => {
   try {
     const response = await axiosInstance.get(`/api/spotify/playlist/${id}`);
     return response.data;
   } catch (error) {
     console.error("Error getting album", error);
+    throw error;
+  }
+};
+
+// Service function to play a song
+export const playSong = async (songUri: string) => {
+  try {
+    const response = await axiosInstance.post("/api/spotify/play", { songUri });
+    return response.data;
+  } catch (error) {
+    console.error("Error playing song:", error);
     throw error;
   }
 };
