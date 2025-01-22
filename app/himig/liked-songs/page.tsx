@@ -2,13 +2,16 @@
 import { useProfile } from "@/app/hooks/useProfile";
 import { useTracks } from "@/app/hooks/useSpotify";
 import React from "react";
-import { FaHeart, FaRegUser } from "react-icons/fa";
+import { FaHeart, FaPlay, FaRegUser } from "react-icons/fa";
 import { GoDotFill } from "react-icons/go";
 import { FaClock } from "react-icons/fa";
+import usePlaySong from "@/app/hooks/usePlaySong";
+import { formatDuration } from "@/app/util/formatDuration";
 
 const LikedSongs = () => {
   const { data: profile } = useProfile();
   const { data: trackData } = useTracks();
+  const { handlePlay } = usePlaySong();
 
   return (
     <div className="min-h-screen rounded-md">
@@ -54,28 +57,33 @@ const LikedSongs = () => {
           </thead>
           <tbody>
             {trackData?.items.map((item, index) => (
-              <tr key={index} className="cursor-pointer hover:bg-gray-500">
-                <td className="px-4 py-2">{index + 1}</td>
+              <tr
+                key={index}
+                className="group transition-all duration-300 hover:bg-gray-500"
+              >
+                <td className="relative px-4 py-4">
+                  <span className="group-hover:opacity-0">{index + 1}</span>
+                  <FaPlay
+                    size={18}
+                    onClick={() => handlePlay(item.track.uri)}
+                    className="absolute inset-0 left-4 top-6 cursor-pointer text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                  />
+                </td>
                 <td className="inline-flex items-center gap-2 px-4 py-2">
                   <img
                     src={item.track.album.images[0]?.url}
                     alt={item.track.name}
                     className="h-12 w-12 rounded-l-md object-cover"
                   />
-                  <p className="truncate">{item.track.name}</p>{" "}
+                  <p className="max-w-[250px] truncate">{item.track.name}</p>{" "}
                 </td>
                 <td className="px-4 py-2">
-                  <p className="truncate">{item.track.album.name}</p>
+                  <p className="max-w-[250px] truncate">
+                    {item.track.album.name}
+                  </p>
                 </td>
                 <td className="px-4 py-2 text-center">
-                  {/* Add duration if available, or placeholder */}
-                  {item.track.duration_ms
-                    ? `${Math.floor(item.track.duration_ms / 60000)}:${Math.floor(
-                        (item.track.duration_ms % 60000) / 1000,
-                      )
-                        .toString()
-                        .padStart(2, "0")}`
-                    : "--:--"}
+                  {formatDuration(item.track.duration_ms)}
                 </td>
               </tr>
             ))}
