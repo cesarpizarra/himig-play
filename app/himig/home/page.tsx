@@ -2,28 +2,17 @@
 import Card from "@/app/components/card/Card";
 import Card2 from "@/app/components/card/Card2";
 import SkeletonLoader from "@/app/components/common/SkeletonLoader";
+import usePlaySong from "@/app/hooks/usePlaySong";
 import {
   useAlbums,
   useNewReleases,
   usePlaylist,
   useRecent,
   useTopArtists,
-  useTracks,
 } from "@/app/hooks/useSpotify";
 import Link from "next/link";
 import React, { useState } from "react";
-import { FaHeart } from "react-icons/fa";
-
-const dummyData = [
-  { id: 1, name: "Liked Songs" },
-  { id: 2, name: "Taylor Swift" },
-  { id: 3, name: "BINI" },
-  { id: 4, name: "Liked Songs" },
-  { id: 5, name: "Taylor Swift" },
-  { id: 6, name: "BINI" },
-  { id: 7, name: "BINI" },
-  { id: 8, name: "BINI" },
-];
+import { FaHeart, FaPlay } from "react-icons/fa";
 
 const colors: string[] = [
   "#102693",
@@ -50,7 +39,7 @@ export default function Home() {
   } = useNewReleases();
   const { data: albumData, isLoading: albumLoading } = useAlbums();
   const { data: playlistData, isLoading: playlistLoading } = usePlaylist();
-
+  const { handlePlay } = usePlaySong();
   const {
     data: recents,
     isLoading: recentLoading,
@@ -92,21 +81,32 @@ export default function Home() {
             <SkeletonLoader count={7} />
           ) : playlists.length > 0 ? (
             playlists.map((playlist, index) => (
-              <Link key={playlist.id} href={`/himig/playlist/${playlist.id}`}>
-                <div
-                  className="flex cursor-pointer items-center gap-3 rounded-md bg-gray-100 bg-opacity-10 bg-clip-padding backdrop-blur-sm backdrop-filter transition-all duration-300 hover:bg-opacity-15"
-                  onMouseOver={() => setHoveredIndex(index)}
+              <div
+                key={playlist.id}
+                className="group flex cursor-pointer items-center gap-3 rounded-md bg-gray-100 bg-opacity-10 bg-clip-padding backdrop-blur-sm backdrop-filter transition-all duration-300 hover:bg-opacity-15"
+                onMouseOver={() => setHoveredIndex(index)}
+              >
+                {/* Play button */}
+                <button
+                  onClick={() => handlePlay(playlist.uri)}
+                  className="absolute right-2 flex h-10 w-10 items-center justify-center rounded-full bg-green-500 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                 >
-                  <img
-                    src={playlist.images[0]?.url}
-                    alt={playlist.name}
-                    className="h-12 w-12 rounded-l-md object-cover"
-                  />
-                  <div>
-                    <p className="text-xs"> {playlist.name}</p>
+                  <FaPlay className="text-black" />
+                </button>
+
+                <Link href={`/himig/playlist/${playlist.id}`}>
+                  <div className="flex items-center gap-3">
+                    <img
+                      src={playlist.images[0]?.url}
+                      alt={playlist.name}
+                      className="h-12 w-12 rounded-l-md object-cover"
+                    />
+                    <div>
+                      <p className="text-xs">{playlist.name}</p>
+                    </div>
                   </div>
-                </div>
-              </Link>
+                </Link>
+              </div>
             ))
           ) : (
             <div>No playlists found.</div>
@@ -114,21 +114,31 @@ export default function Home() {
 
           {albums.length > 0 &&
             albums.map((album, index) => (
-              <Link key={index} href={`/himig/album/${album.album.id}`}>
-                <div
-                  className="flex cursor-pointer items-center gap-3 rounded-md bg-gray-100 bg-opacity-10 bg-clip-padding backdrop-blur-sm backdrop-filter transition-all duration-300 hover:bg-opacity-15"
-                  onMouseOver={() => setHoveredIndex(index)}
+              <div
+                className="group flex cursor-pointer items-center gap-3 rounded-md bg-gray-100 bg-opacity-10 bg-clip-padding backdrop-blur-sm backdrop-filter transition-all duration-300 hover:bg-opacity-15"
+                onMouseOver={() => setHoveredIndex(index)}
+                key={index}
+              >
+                {/* Play button */}
+                <button
+                  onClick={() => handlePlay(album.album.uri)}
+                  className="absolute right-2 flex h-10 w-10 items-center justify-center rounded-full bg-green-500 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                 >
-                  <img
-                    src={album.album.images[0].url}
-                    alt={album.album.name}
-                    className="h-12 w-12 rounded-l-md object-cover"
-                  />
-                  <div>
-                    <p className="text-xs"> {album.album.name}</p>
+                  <FaPlay className="text-black" />
+                </button>
+                <Link href={`/himig/album/${album.album.id}`}>
+                  <div className="flex items-center gap-3">
+                    <img
+                      src={album.album.images[0].url}
+                      alt={album.album.name}
+                      className="h-12 w-12 rounded-l-md object-cover"
+                    />
+                    <div>
+                      <p className="text-xs"> {album.album.name}</p>
+                    </div>
                   </div>
-                </div>
-              </Link>
+                </Link>
+              </div>
             ))}
         </div>
       </div>
@@ -138,6 +148,7 @@ export default function Home() {
         title="New Releases"
         isLoading={newReleasesLoading}
         error={newReleasesError}
+        pathLink="new-releases"
       />
 
       <Card
@@ -145,6 +156,7 @@ export default function Home() {
         title="Recently Played"
         isLoading={recentLoading}
         error={recentError}
+        pathLink="recently-played"
       />
 
       <Card2
@@ -152,6 +164,7 @@ export default function Home() {
         title="Top Artists"
         isLoading={topLoading}
         error={topError}
+        pathLink="top-artists"
       />
     </div>
   );
