@@ -1,11 +1,12 @@
 "use client";
 import Error from "@/app/components/common/Error";
 import Loading from "@/app/components/common/Loading";
+import usePlaySong from "@/app/hooks/usePlaySong";
 import { usePlaylistById } from "@/app/hooks/useSpotify";
 import { getDominantColor } from "@/app/util/colorUtil";
+import { formatDuration } from "@/app/util/formatDuration";
 import React, { useEffect, useState } from "react";
-import { FaClock } from "react-icons/fa";
-import { GoDotFill } from "react-icons/go";
+import { FaClock, FaPlay } from "react-icons/fa";
 
 const Playlist = ({
   params,
@@ -15,7 +16,7 @@ const Playlist = ({
   };
 }) => {
   const { data, isLoading, error } = usePlaylistById(params.id);
-
+  const { handlePlay } = usePlaySong();
   const [bgColor, setBgColor] = useState<string>("#4b5563");
 
   useEffect(() => {
@@ -77,9 +78,16 @@ const Playlist = ({
             {data?.tracks.items.map((item, index) => (
               <tr
                 key={index}
-                className="cursor-pointer border-b border-gray-800 hover:bg-gray-500"
+                className="group border-b border-gray-800 transition-all duration-300 hover:bg-gray-500"
               >
-                <td className="px-4 py-2">{index + 1}</td>
+                <td className="relative px-4 py-4">
+                  <span className="group-hover:opacity-0">{index + 1}</span>
+                  <FaPlay
+                    size={18}
+                    onClick={() => handlePlay(item.track.uri)}
+                    className="absolute inset-0 left-4 top-6 cursor-pointer text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                  />
+                </td>
                 <td className="flex items-center gap-3 px-4 py-2">
                   <img
                     src={item.track.album.images[0]?.url}
@@ -95,13 +103,7 @@ const Playlist = ({
                   <p className="truncate">{item.track.album.name}</p>
                 </td>
                 <td className="px-4 py-2">
-                  {item.track.duration_ms
-                    ? `${Math.floor(item.track.duration_ms / 60000)}:${Math.floor(
-                        (item.track.duration_ms % 60000) / 1000,
-                      )
-                        .toString()
-                        .padStart(2, "0")}`
-                    : "--:--"}
+                  {formatDuration(item.track.duration_ms)}
                 </td>
               </tr>
             ))}
