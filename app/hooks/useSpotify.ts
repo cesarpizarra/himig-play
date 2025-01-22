@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import {
   getAlbumById,
   getAlbums,
+  getArtistAlbum,
   getCurrentPlaying,
   getFollowed,
   getNewReleases,
@@ -20,7 +21,6 @@ import {
   LikeSongsResponse,
   PlaylistById,
   PlaylistResponse,
-  RecentResponse,
   TopArtist,
   TopTrack,
 } from "../types/spotify";
@@ -38,6 +38,14 @@ export const useAlbum = (id: string) => {
   return useQuery<AlbumById>({
     queryKey: ["album", id],
     queryFn: () => getAlbumById(id),
+  });
+};
+
+// Hook to get a album of artist
+export const useArtistAlbum = (id: string) => {
+  return useQuery({
+    queryKey: ["artist-album", id],
+    queryFn: () => getArtistAlbum(id),
   });
 };
 
@@ -99,7 +107,7 @@ export const useTracks = () => {
 
 // Hook to get a recently played
 export const useRecent = () => {
-  return useQuery<RecentResponse>({
+  return useQuery({
     queryKey: ["recent"],
     queryFn: getRecentlyPlayed,
   });
@@ -115,7 +123,7 @@ export const useTopArtists = () => {
 
 // Hook to get a new releases
 export const useNewReleases = () => {
-  return useQuery({
+  return useQuery<TopArtist[]>({
     queryKey: ["new-releases"],
     queryFn: getNewReleases,
   });
