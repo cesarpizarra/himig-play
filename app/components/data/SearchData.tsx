@@ -39,14 +39,6 @@ export default function SearchData({
                         .map((artist) => artist.name)
                         .join(", ")}
                     </p>
-                    <a
-                      href={firstTrack.external_urls.spotify}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-2 inline-block text-primary"
-                    >
-                      View on Spotify
-                    </a>
                   </Link>
 
                   {/* Play button */}
