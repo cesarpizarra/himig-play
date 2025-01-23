@@ -1,5 +1,6 @@
 import React from "react";
 import DefaultLayout from "../components/layout";
+import { SearchProvider } from "../context/SearchContext";
 
 export default function HimigLayout({
   children,
@@ -8,7 +9,9 @@ export default function HimigLayout({
 }) {
   return (
     <div className="min-h-screen w-full bg-dark text-white">
-      <DefaultLayout>{children}</DefaultLayout>
+      <SearchProvider>
+        <DefaultLayout>{children}</DefaultLayout>
+      </SearchProvider>
     </div>
   );
 }
