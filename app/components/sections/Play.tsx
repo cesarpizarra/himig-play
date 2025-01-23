@@ -30,6 +30,7 @@ export default function Play() {
         item: {
           name: data.item.name,
           album: {
+            name: data.item.album.name,
             images: data.item.album.images,
             external_urls: data.item.album.external_urls,
           },
@@ -44,28 +45,12 @@ export default function Play() {
     }
   }, [data]);
 
-  if (status === "loading") return <div>Loading Spotify Player...</div>;
+  if (status === "loading" || isLoading)
+    return <div>Loading Spotify Player...</div>;
   if (!token) return <div>No access token available. Please log in.</div>;
 
   return (
-    <div className="sticky bottom-0 z-50 w-full overflow-x-hidden bg-dark px-4 pb-4 pt-7">
-      {currentTrack && (
-        <div className="mb-4 flex items-center gap-4 text-white">
-          <img
-            src={currentTrack.item.album.images[0]?.url}
-            alt={currentTrack.item.name}
-            className="h-12 w-12 rounded-md object-cover"
-          />
-          <div>
-            <h3 className="text-sm font-semibold">{currentTrack.item.name}</h3>
-            <p className="text-xs text-gray-400">
-              {currentTrack.item.artists
-                .map((artist) => artist.name)
-                .join(", ")}
-            </p>
-          </div>
-        </div>
-      )}
+    <div className="sticky bottom-0 z-50 w-full overflow-x-hidden bg-black px-4 pb-4 pt-7">
       {/* <SpotifyPlayer
         token={token}
         showSaveIcon
@@ -81,24 +66,6 @@ export default function Play() {
         }}
         play={currentTrack ? currentTrack.is_playing : false}
       /> */}
-      <div className="divider flex md:hidden"></div>
-      <div className="mt-4 flex items-center justify-between md:hidden">
-        <div data-tip="Home" className="tooltip tooltip-top">
-          <Link href="/himig/home" className="btn btn-circle">
-            <FaHome size={20} />
-          </Link>
-        </div>
-        <div data-tip="Search" className="tooltip tooltip-top">
-          <Link href="/himig/home" className="btn btn-circle">
-            <FaSearch size={20} />
-          </Link>
-        </div>
-        <div data-tip="Your Library" className="tooltip tooltip-top">
-          <Link href="/himig/home" className="btn btn-circle">
-            <IoLibrary size={20} />
-          </Link>
-        </div>
-      </div>
     </div>
   );
 }
