@@ -66,7 +66,7 @@ export default function Header() {
           >
             <FaGithub size={20} className="cursor-pointer text-gray-400" />
 
-            <span className="text-sm font-medium text-gray-400">
+            <span className="text-xs font-medium text-gray-400 md:text-sm">
               Made with Cezaru
             </span>
           </Link>
