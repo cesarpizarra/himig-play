@@ -4,6 +4,7 @@ import SkeletonLoader from "@/app/components/common/SkeletonLoader";
 import { formatDuration } from "@/app/util/formatDuration";
 import { FaPlay } from "react-icons/fa";
 import usePlaySong from "@/app/hooks/usePlaySong";
+import Link from "next/link";
 
 interface Props {
   topTracks: TopTrack[] | null | undefined;
@@ -73,7 +74,12 @@ const TopTracksSection: React.FC<Props> = ({ topTracks, isLoading, error }) => {
                     {track.artists.map((artist) => artist.name).join(", ")}
                   </td>
                   <td className="px-4 py-2 text-xs text-gray-400">
-                    {track.album.name}
+                    <Link
+                      href={`/himig/album/${track.album.id}`}
+                      className="max-w-[250px] truncate group-hover:underline"
+                    >
+                      {track.album.name}
+                    </Link>
                   </td>
                   <td className="px-4 py-2 text-xs text-gray-400">
                     {formatDuration(track.duration_ms)}
