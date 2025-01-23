@@ -18,7 +18,7 @@ export default function Sidebar() {
   const albums = albumData?.items || [];
 
   return (
-    <div className="min-h-screen rounded-md bg-base-300 p-4">
+    <div className="h-full rounded-md bg-base-300 p-4">
       <div className="flex items-center justify-between px-6 pb-4 text-gray-400">
         <div className="flex items-center gap-4 text-white">
           <IoLibrary size={25} />
