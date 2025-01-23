@@ -102,9 +102,10 @@ export type CurrentPlayingTrack = {
   item: {
     name: string;
     album: {
+      name: string;
       images: Array<{ url: string }>;
       external_urls: { spotify: string };
-      release_date: string;
+      release_date?: any;
       release_date_precision?: string;
     };
     artists: Array<{
