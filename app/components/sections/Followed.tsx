@@ -34,7 +34,7 @@ const FollowedArtistsSection: React.FC<Props> = ({
               key={artist.id}
               className="group flex transform cursor-pointer flex-col items-center p-2 transition-transform duration-200 ease-in-out hover:scale-105 hover:bg-base-100"
             >
-              <Link href={`/himig/artist/#`}>
+              <Link href={`/himig/artist/album/${artist.id}`}>
                 <img
                   src={artist.images[0]?.url}
                   alt={artist.name}
