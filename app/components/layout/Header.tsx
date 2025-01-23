@@ -13,7 +13,6 @@ export default function Header() {
   const { setSearchQuery, searchQuery } = useSearchContext();
   const router = useRouter();
   const pathName = usePathname();
-  console.log(pathName);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
@@ -36,7 +35,7 @@ export default function Header() {
             <Image src="/logo.png" width={50} height={50} alt="logo" />
           </Link>
 
-          <div className="ml-5 flex items-center gap-3">
+          <div className="ml-5 hidden items-center gap-3 md:flex">
             <span
               className="tooltip tooltip-bottom cursor-pointer"
               data-tip="Go back"
@@ -72,6 +71,7 @@ export default function Header() {
             />
           </label>
         </div>
+
         <div className="navbar-end">
           <Link
             href="https://github.com/cesarpizarra"
