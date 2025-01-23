@@ -140,3 +140,16 @@ export const playSong = async (songUri: string) => {
     throw error;
   }
 };
+
+// Service function to search
+export const search = async (searchText: string) => {
+  try {
+    const response = await axiosInstance.get(
+      `/api/spotify/search?q=${encodeURIComponent(searchText)}`,
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error searching", error);
+    throw error;
+  }
+};
