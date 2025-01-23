@@ -44,7 +44,7 @@ const Card2: React.FC<Card2Props> = ({
                 className="group flex-shrink-0 transform cursor-pointer flex-col items-center bg-base-100 p-2 transition-transform duration-200 ease-in-out hover:scale-105"
               >
                 <Link
-                  href={`/himig/${item.type === "album" ? `album/${item.id}` : "/home/#"}`}
+                  href={`/himig/${item.type === "album" ? `album/${item.id}` : `artist/album/${item.id}`}`}
                 >
                   <img
                     src={item.images[0].url}
