@@ -7,11 +7,17 @@ import { GoDotFill } from "react-icons/go";
 import { FaClock } from "react-icons/fa";
 import usePlaySong from "@/app/hooks/usePlaySong";
 import { formatDuration } from "@/app/util/formatDuration";
+import Loading from "@/app/components/common/Loading";
+import Error from "@/app/components/common/Error";
+import Link from "next/link";
 
 const LikedSongs = () => {
   const { data: profile } = useProfile();
-  const { data: trackData } = useTracks();
+  const { data: trackData, isLoading, error } = useTracks();
   const { handlePlay } = usePlaySong();
+
+  if (isLoading) return <Loading />;
+  if (error) return <Error message={error as any} />;
 
   return (
     <div className="min-h-screen rounded-md">
@@ -78,9 +84,12 @@ const LikedSongs = () => {
                   <p className="max-w-[250px] truncate">{item.track.name}</p>{" "}
                 </td>
                 <td className="px-4 py-2">
-                  <p className="max-w-[250px] truncate">
+                  <Link
+                    href={`/himig/album/${item.track.album.id}`}
+                    className="max-w-[250px] truncate group-hover:underline"
+                  >
                     {item.track.album.name}
-                  </p>
+                  </Link>
                 </td>
                 <td className="px-4 py-2 text-center">
                   {formatDuration(item.track.duration_ms)}
