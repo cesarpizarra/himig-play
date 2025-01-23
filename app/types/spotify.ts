@@ -8,6 +8,18 @@ export type DefaultItem = {
   uri: string;
 };
 
+export type SearchResult = {
+  tracks: {
+    items: TopTrack[];
+  };
+  artists: {
+    items: TopArtist[];
+  };
+  albums: {
+    items: DefaultItem2[];
+  };
+};
+
 export type DefaultItem2 = {
   images: Array<{ url: string }>;
   name: string;
@@ -81,6 +93,7 @@ export type TopArtist = {
   external_urls: { spotify: string };
   type: string;
   uri: string;
+  followers: { href: string; total: number };
 };
 
 export type TopTrack = {
