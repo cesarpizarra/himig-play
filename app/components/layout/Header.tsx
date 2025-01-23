@@ -1,21 +1,33 @@
 "use client";
+import { useSearchContext } from "@/app/context/SearchContext";
 import { useProfile } from "@/app/hooks/useProfile";
 import { signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import React from "react";
+import { usePathname, useRouter } from "next/navigation";
+import React, { useEffect } from "react";
 import { FaGithub, FaHome, FaSearch } from "react-icons/fa";
-import { IoIosNotifications } from "react-icons/io";
 import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
 export default function Header() {
   const { data, isLoading } = useProfile();
-
+  const { setSearchQuery, searchQuery } = useSearchContext();
   const router = useRouter();
+  const pathName = usePathname();
+  console.log(pathName);
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+  };
+
   const handleLogout = async () => {
     await signOut({ redirect: false });
     router.push("/");
   };
+
+  // Clear search input on route change
+  useEffect(() => {
+    setSearchQuery("");
+  }, [pathName, setSearchQuery]);
   return (
     <header className="sticky top-0 z-50 bg-dark">
       <nav className="navbar py-4">
@@ -53,6 +65,8 @@ export default function Header() {
 
             <input
               type="text"
+              value={searchQuery}
+              onChange={handleSearchChange}
               className="w-96 grow text-sm"
               placeholder="What do you want to play?"
             />
