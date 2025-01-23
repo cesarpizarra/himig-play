@@ -1,8 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { IoLibrary } from "react-icons/io5";
-import { FaHome, FaSearch } from "react-icons/fa";
-import Link from "next/link";
 import SpotifyPlayer from "react-spotify-web-playback";
 import { useSession } from "next-auth/react";
 import { useCurrentPlaying } from "@/app/hooks/useSpotify";
@@ -50,7 +47,7 @@ export default function Play() {
   if (!token) return <div>No access token available. Please log in.</div>;
 
   return (
-    <div className="sticky bottom-0 z-50 w-full overflow-x-hidden bg-black px-4 pb-4 pt-7">
+    <div className="sticky bottom-0 z-50 w-full overflow-x-hidden bg-black pb-4 pt-7">
       {/* <SpotifyPlayer
         token={token}
         showSaveIcon
