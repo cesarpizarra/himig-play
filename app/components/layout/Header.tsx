@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
-import { FaHome, FaSearch } from "react-icons/fa";
+import { FaGithub, FaHome, FaSearch } from "react-icons/fa";
 import { IoIosNotifications } from "react-icons/io";
 import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
 export default function Header() {
@@ -59,6 +59,18 @@ export default function Header() {
           </label>
         </div>
         <div className="navbar-end">
+          <Link
+            href="https://github.com/cesarpizarra"
+            target="_blank"
+            className="mr-5 flex items-center gap-2 hover:underline"
+          >
+            <FaGithub size={20} className="cursor-pointer text-gray-400" />
+
+            <span className="text-sm font-medium text-gray-400">
+              Made with Cezaru
+            </span>
+          </Link>
+
           <div className="dropdown dropdown-end">
             <button
               tabIndex={0}
