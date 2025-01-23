@@ -89,6 +89,7 @@ export type TopTrack = {
   album: {
     images: Array<{ url: string }>;
     name: string;
+    id: string;
   };
   artists: Array<{ name: string }>;
   external_urls: { spotify: string };
