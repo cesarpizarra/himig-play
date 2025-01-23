@@ -5,6 +5,7 @@ import usePlaySong from "@/app/hooks/usePlaySong";
 import { usePlaylistById } from "@/app/hooks/useSpotify";
 import { getDominantColor } from "@/app/util/colorUtil";
 import { formatDuration } from "@/app/util/formatDuration";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { FaClock, FaPlay } from "react-icons/fa";
 
@@ -100,7 +101,12 @@ const Playlist = ({
                 </td>
 
                 <td className="px-4 py-2">
-                  <p className="truncate">{item.track.album.name}</p>
+                  <Link
+                    href={`/himig/album/${item.track.album.id}`}
+                    className="truncate group-hover:underline"
+                  >
+                    {item.track.album.name}
+                  </Link>
                 </td>
                 <td className="px-4 py-2">
                   {formatDuration(item.track.duration_ms)}
