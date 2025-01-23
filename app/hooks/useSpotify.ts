@@ -86,6 +86,8 @@ export const useCurrentPlaying = () => {
   return useQuery<CurrentPlayingTrack>({
     queryKey: ["current-playing"],
     queryFn: getCurrentPlaying,
+    refetchInterval: 5000,
+    refetchOnWindowFocus: true,
   });
 };
 
