@@ -24,7 +24,7 @@ export default function TopArtists() {
             key={index}
             className="group flex-shrink-0 transform cursor-pointer flex-col items-center p-2 transition-transform duration-200 ease-in-out hover:scale-105 hover:bg-base-100"
           >
-            <Link href={`/himig/artist/${item.id}`}>
+            <Link href={`/himig/artist/album/${item.id}`}>
               <div className="relative flex flex-col items-center justify-center">
                 <img
                   src={item.images[0].url}
