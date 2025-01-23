@@ -10,20 +10,32 @@ export default function DefaultLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
+    <div className="flex h-screen flex-col p-2">
+      {/* Header */}
       <Header />
-      <div className="flex h-screen gap-0 px-4 lg:gap-2">
-        <div className="hidden w-full max-w-sm lg:block">
+
+      {/* Main Content Section */}
+      <div className="flex flex-1 gap-3 overflow-hidden">
+        {/* Sidebar */}
+        <div className="hidden w-1/4 max-w-xs overflow-y-auto lg:block">
           <Sidebar />
         </div>
-        <div className="h-full flex-1 overflow-hidden overflow-y-auto bg-base-300">
+
+        {/* Main Content */}
+        <div className="custom-scrollbar flex-1 overflow-y-auto bg-base-300">
           {children}
         </div>
-        <div className="hidden w-full max-w-sm lg:block">
+
+        {/* Rightbar */}
+        <div className="hidden w-1/4 max-w-xs overflow-y-auto lg:block">
           <Rightbar />
         </div>
       </div>
-      <Play />
-    </>
+
+      {/* Playbar */}
+      <div className="border-t border-gray-700 bg-gray-900">
+        <Play />
+      </div>
+    </div>
   );
 }
