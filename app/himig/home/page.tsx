@@ -49,7 +49,7 @@ export default function Home() {
   const albums = albumData?.items || [];
 
   return (
-    <div className="min-h-screen w-full rounded-md bg-base-200">
+    <div className="w-full rounded-md bg-base-200">
       <div
         style={{
           background: hoveredIndex !== null ? colors[hoveredIndex] : "#102693",
