@@ -48,6 +48,18 @@ export default function Home() {
   const playlists = playlistData?.items || [];
   const albums = albumData?.items || [];
 
+  const getGreeting = () => {
+    const currentHour = new Date().getHours();
+
+    if (currentHour >= 5 && currentHour < 12) {
+      return "Good Morning!";
+    } else if (currentHour >= 12 && currentHour < 18) {
+      return "Good Afternoon!";
+    } else {
+      return "Good Evening!";
+    }
+  };
+
   return (
     <div className="w-full rounded-md bg-base-200">
       <div
@@ -57,7 +69,7 @@ export default function Home() {
         className="relative z-0 rounded-md p-4 pb-24 transition-all duration-500 ease-in-out"
       >
         <div className="pointer-events-none absolute inset-0 z-[-1] bg-gradient-to-b from-transparent to-base-200"></div>
-        <h1>Good Evening!</h1>
+        <h1>{getGreeting()}</h1>
 
         <div className="mt-4 grid grid-cols-2 gap-3 lg:grid-cols-4">
           {playlistLoading || albumLoading ? (
