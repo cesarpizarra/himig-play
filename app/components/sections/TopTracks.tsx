@@ -1,7 +1,6 @@
 import React from "react";
 import { TopTrack } from "@/app/types/spotify";
 import SkeletonLoader from "@/app/components/common/SkeletonLoader";
-import Link from "next/link";
 import { formatDuration } from "@/app/util/formatDuration";
 import { FaPlay } from "react-icons/fa";
 import usePlaySong from "@/app/hooks/usePlaySong";
