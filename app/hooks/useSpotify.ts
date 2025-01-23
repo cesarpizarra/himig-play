@@ -13,6 +13,7 @@ import {
   getTopArtists,
   getTopTracks,
   getTracks,
+  search,
 } from "../services/spotifyService";
 import {
   AlbumById,
@@ -21,6 +22,7 @@ import {
   LikeSongsResponse,
   PlaylistById,
   PlaylistResponse,
+  SearchResult,
   TopArtist,
   TopTrack,
 } from "../types/spotify";
@@ -128,5 +130,14 @@ export const useNewReleases = () => {
   return useQuery<TopArtist[]>({
     queryKey: ["new-releases"],
     queryFn: getNewReleases,
+  });
+};
+
+// Hook to search for tracks, artists, albums, etc.
+export const useSearch = (searchText: string) => {
+  return useQuery<SearchResult>({
+    queryKey: ["search", searchText],
+    queryFn: () => search(searchText),
+    enabled: searchText.length > 0,
   });
 };
