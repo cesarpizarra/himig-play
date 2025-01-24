@@ -88,7 +88,13 @@ export type CurrentPlayingTrack = {
   is_playing: boolean;
   item: {
     name: string;
-    album: Album & { release_date?: string; release_date_precision?: string };
+    album: {
+      name: string;
+      images: Array<{ url: string }>;
+      external_urls: { spotify: string };
+      release_date?: any;
+      release_date_precision?: string;
+    };
     artists: Artist[];
     external_urls: ExternalUrls;
   };
