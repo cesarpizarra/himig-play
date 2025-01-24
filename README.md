@@ -1,36 +1,125 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Himig Play 🎵
 
-## Getting Started
+Himig Play is a personalized music streaming app powered by Spotify API, offering a seamless experience to discover, play, and enjoy your favorite tunes
 
-First, run the development server:
+## Features 🌟
+
+- 🎧 View your top songs, playlists, and artists.
+- ▶️ Play songs using SpotifyPlayer.
+- 📊 Displays personalized music statistics.
+- 💻 Interactive and responsive design.
+- 🪄 Clean and user-friendly interface.
+- 🔗 Integration with the Spotify API for a seamless music experience.
+
+## Getting Started 🚀
+
+#### Prerequisites
+
+Before you begin, ensure you have the following installed on your system:
+
+- Node.js (v16 or later)
+- npm or yarn
+- A Spotify Developer Account
+
+## Run Locally
+
+Clone the Project
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/cesarpizarra/himig-play
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Navigate to the Project Directory
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+cd  himig-play
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Install dependencies
 
-## Learn More
+```bash
+npm install
+```
 
-To learn more about Next.js, take a look at the following resources:
+or
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+yarn install
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Create a .env file in the root of your project and add the following variables:
 
-## Deploy on Vercel
+```
+SPOTIFY_CLIENT_ID=your-client-id
+SPOTIFY_CLIENT_SECRET=your-client-secret
+SPOTIFY_REDIRECT_URI=your-redirect-uri
+NEXTAUTH_URL=your-nextauth-url
+NEXTAUTH_SECRET=your-nextauth-secret
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Start the app
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```bash
+  npm run dev
+```
+
+Visit http://localhost:3000 in your browser to explore Himig Play!
+
+## Setting Up Spotify API 🎵
+
+To integrate Spotify API, follow these steps:
+
+1.  Create a Spotify Developer Account
+
+    - Go to [Spotify for Developers](https://developer.spotify.com/)
+    - Log in or sign up for a Spotify Developer Account.
+
+2.  Create a New App
+
+    - Navigate to the Dashboard and click Create an App.
+    - Fill out the form with your app's name and description.
+
+3.  Configure Redirect URIs
+
+    - Go to your app's settings.
+    - Add your redirect URI under Redirect URIs (e.g., http://localhost:3000/api/auth/callback/spotify).
+
+4.  Get Your Client ID and Secret
+
+    - In your app settings, you'll find the Client ID and Client Secret.
+    - Copy these and add them to your .env file.
+
+5.  Enable the Required Scopes
+    When making requests to the Spotify API, ensure your app requests the following scopes:
+
+    - streaming,
+    - user-read-email,
+    - user-follow-read,
+    - user-top-read,
+    - playlist-read-private,
+    - playlist-modify-private,
+    - playlist-modify-public,
+    - user-library-read,
+    - user-read-private,
+    - user-read-currently-playing,
+    - user-modify-playback-state,
+    - user-read-playback-state,
+    - user-read-recently-played
+
+    Refer to the [ Spotify API Authorization Guide](https://developer.spotify.com/documentation/web-api/concepts/authorization/) for more details.
+
+## Contributing
+
+1. Fork it!
+2. Create your feature branch: `git checkout -b new-branch`
+3. Commit your changes: `git commit -m 'Add some branch'`
+4. Push to the branch: `git push origin new-branch`
+5. Submit a pull request :D
+
+## License 📄
+
+This project is licensed under the MIT License.
+
+## Acknowledgments 🙌
+
+Special thanks to the Spotify Developer API for making this app possible.
