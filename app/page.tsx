@@ -26,9 +26,10 @@ export default function Home() {
             </h1>
 
             <p className="text-sm">
-              Himig Play is a personalized music streaming app powered by
-              Spotify API, offering a seamless experience to discover, play, and
-              enjoy your favorite tunes
+              Himig Play is a personalized music streaming app powered by{" "}
+              <span className="text-primary">Spotify API</span>, offering a
+              seamless experience to discover, play, and enjoy your favorite
+              tunes
             </p>
             <button
               onClick={() => signIn()}
