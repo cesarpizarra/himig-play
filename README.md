@@ -6,15 +6,15 @@ Himig Play is a personalized music streaming app powered by Spotify API, offerin
 
 ### Home Page
 
-![Bookmark Landing Page - Mobile View](/screenshots/Screentshot1.png)
+![Bookmark Landing Page - Mobile View](/screenshots/Screenshot1.png)
 
 ### Desktop View
 
-![Bookmark Landing Page - Desktop View](/screenshots/Screentshot2.png)
+![Bookmark Landing Page - Desktop View](/screenshots/Screenshot2.png)
 
 ### Mobile View
 
-![Bookmark Landing Page - Desktop View](/screenshots/Screentshot3.png)
+![Bookmark Landing Page - Desktop View](/screenshots/Screenshot3.png)
 
 ## Features 🌟
 
