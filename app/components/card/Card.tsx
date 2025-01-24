@@ -1,16 +1,13 @@
 import React from "react";
-import { DefaultItem2 } from "@/app/types/spotify";
 import SkeletonLoader from "@/app/components/common/SkeletonLoader";
 import Error from "../common/Error";
 import Link from "next/link";
 import usePlaySong from "@/app/hooks/usePlaySong";
 import { FaPlay } from "react-icons/fa";
+import { Album } from "@/app/types/spotify";
 
 interface CardProps {
-  data:
-    | Array<{ track: { album: DefaultItem2; uri: string } }>
-    | null
-    | undefined;
+  data: Array<{ track: { album: Album; uri: string } }> | null | undefined;
   isLoading: boolean;
   error: any;
   title: string;
