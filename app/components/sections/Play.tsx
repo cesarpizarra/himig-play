@@ -53,7 +53,7 @@ export default function Play() {
       <Link
         href="https://github.com/cesarpizarra"
         target="_blank"
-        className="mr-5 flex items-center gap-2 hover:underline"
+        className="mb-2 mr-5 flex w-40 items-center gap-2 hover:underline"
       >
         <FaGithub size={20} className="cursor-pointer text-gray-400" />
 
