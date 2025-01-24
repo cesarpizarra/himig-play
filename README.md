@@ -134,6 +134,6 @@ To integrate Spotify API, follow these steps:
 
 This project is licensed under the MIT License.
 
-## Acknowledgments 🙌
+## Acknowledgements 🙌
 
 Special thanks to the Spotify Developer API for making this app possible.
