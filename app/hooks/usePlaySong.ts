@@ -4,7 +4,7 @@ const usePlaySong = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handlePlay = async (songUri: string) => {
+  const handlePlay = async (songUri: any) => {
     setLoading(true);
     setError(null);
 
