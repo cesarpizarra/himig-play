@@ -61,7 +61,7 @@ export default function Play() {
           Made with Cezaru
         </span>
       </Link>
-      {/* <SpotifyPlayer
+      <SpotifyPlayer
         token={token}
         showSaveIcon
         uris={currentTrack ? [currentTrack.item.external_urls.spotify] : []}
@@ -75,7 +75,7 @@ export default function Play() {
           sliderTrackColor: "#535353",
         }}
         play={currentTrack ? currentTrack.is_playing : false}
-      /> */}
+      />
     </div>
   );
 }
