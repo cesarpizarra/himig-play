@@ -46,7 +46,7 @@ const Album = ({
       <div className="p-4">
         <h1 className="mb-4 text-xl font-semibold">Artist&apos;s Albums</h1>
         <div className="p-4">
-          <table className="w-full table-auto border-collapse text-left text-sm">
+          <table className="w-full table-auto border-collapse whitespace-nowrap text-left text-sm">
             <thead>
               <tr className="border-b-2 border-gray-800">
                 <th className="px-4 py-2">#</th>

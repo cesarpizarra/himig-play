@@ -22,7 +22,7 @@ const TopTracksSection: React.FC<Props> = ({ topTracks, isLoading, error }) => {
       <h1 className="text-md mb-4 font-semibold text-white md:text-lg">
         Top Track This Month
       </h1>
-      <div className="mt-4 overflow-x-auto">
+      <div className="mt-4 overflow-x-auto whitespace-nowrap">
         {isLoading ? (
           <SkeletonLoader count={4} itemClassName="custom-item-class" />
         ) : (

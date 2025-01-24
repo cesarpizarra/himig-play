@@ -52,7 +52,7 @@ const LikedSongs = () => {
       </div>
 
       {/* Table Section */}
-      <div className="p-4">
+      <div className="custom-scrollbar overflow-x-auto p-4">
         <table className="w-full table-auto border-collapse text-left text-sm">
           <thead>
             <tr className="border-b-2 border-gray-800">

@@ -55,8 +55,8 @@ const Album = ({
           />
         )}
         <div>
-          <h3 className="text-sm capitalize text-gray-300">{data?.type}</h3>
-          <h1 className="text-2xl font-semibold md:text-5xl">{data?.name}</h1>
+          <h3 className="text-xs capitalize text-gray-300">{data?.type}</h3>
+          <h1 className="text-sm font-semibold md:text-5xl">{data?.name}</h1>
           <div className="mt-2 flex items-center gap-1">
             <p className="text-xs">{data?.label}</p>
             <GoDotFill />
