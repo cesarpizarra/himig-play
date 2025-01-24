@@ -10,6 +10,7 @@ const nextConfig = {
       "spotifycdn.com",
       "lineup-images.scdn.co",
       "image-cdn-ak.spotifycdn.com",
+      "image-cdn-fa.spotifycdn.com",
     ],
   },
 };
