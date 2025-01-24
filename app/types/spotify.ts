@@ -1,36 +1,42 @@
-export type DefaultItem = {
+type Image = { url: string };
+type ExternalUrls = { spotify: string };
+type Artist = {
+  name: string;
+  id?: string;
+  uri?: string;
+  external_urls?: ExternalUrls;
+};
+type Track = {
   id: string;
   name: string;
-  description: string;
-  images: Array<{ url: string }>;
-  external_urls: { spotify: string };
+  duration_ms: number;
+  uri: string;
+};
+type AlbumBase = {
+  id: string;
+  name: string;
+  images: Image[];
+  external_urls: ExternalUrls;
+  artists: Artist[];
   type: string;
+};
+export type Album = AlbumBase & {
+  release_date: string;
+  release_date_precision: string;
+  total_tracks: number;
+  label?: string;
+  uri: string;
+};
+
+export type DefaultItem = AlbumBase & {
+  description: string;
   uri: string;
 };
 
 export type SearchResult = {
-  tracks: {
-    items: TopTrack[];
-  };
-  artists: {
-    items: TopArtist[];
-  };
-  albums: {
-    items: DefaultItem2[];
-  };
-};
-
-export type DefaultItem2 = {
-  images: Array<{ url: string }>;
-  name: string;
-  external_urls: { spotify: string };
-  artists: Array<{ name: string }>;
-  release_date: string;
-  release_date_precision: string;
-  total_tracks: number;
-  type: string;
-  id: string;
-  uri: string;
+  tracks: { items: TopTrack[] };
+  artists: { items: TopArtist[] };
+  albums: { items: Album[] };
 };
 
 export type PlaylistResponse = {
@@ -39,75 +45,42 @@ export type PlaylistResponse = {
 };
 
 export type AlbumResponse = {
-  items: Array<{
-    album: DefaultItem2;
-  }>;
+  items: Array<{ album: Album }>;
   total: number;
   offset: number;
 };
 
-export type AlbumById = {
-  images: Array<{ url: string }>;
-  name: string;
-  external_urls: { spotify: string };
-  artists: Array<{ name: string }>;
-  tracks: {
-    items: Array<{
-      id: string;
-      name: string;
-      duration_ms: number;
-      uri: string;
-    }>;
-  };
-  type: string;
-  id: string;
-  label: string;
-  total_tracks: number;
+export type AlbumById = Album & {
+  tracks: { items: Track[] };
 };
 
 export type PlaylistById = {
-  images: Array<{ url: string }>;
+  id: string;
   name: string;
-  external_urls: { spotify: string };
-  artists: Array<{ name: string }>;
+  type: string;
+  images: Image[];
+  external_urls: ExternalUrls;
   tracks: {
     items: Array<{
-      track: {
-        album: DefaultItem2;
-        id: string;
-        name: string;
-        duration_ms: number;
-        uri: string;
-      };
+      track: Track & { album: Album };
     }>;
   };
-  type: string;
-  id: string;
 };
 
-export type TopArtist = {
-  id: string;
-  name: string;
-  artists: Array<{ name: string; id: string; uri: string }>;
-  images: Array<{ url: string }>;
-  external_urls: { spotify: string };
-  type: string;
-  uri: string;
+export type TopArtist = Artist & {
+  images: Image[];
   followers: { href: string; total: number };
+  type: string;
 };
 
-export type TopTrack = {
-  id: string;
-  name: string;
+export type TopTrack = Track & {
   album: {
-    images: Array<{ url: string }>;
-    name: string;
     id: string;
+    name: string;
+    images: Image[];
   };
-  artists: Array<{ name: string }>;
-  external_urls: { spotify: string };
-  duration_ms: number;
-  uri: string;
+  artists: Artist[];
+  external_urls: ExternalUrls;
 };
 
 export type CurrentPlayingTrack = {
@@ -115,29 +88,15 @@ export type CurrentPlayingTrack = {
   is_playing: boolean;
   item: {
     name: string;
-    album: {
-      name: string;
-      images: Array<{ url: string }>;
-      external_urls: { spotify: string };
-      release_date?: any;
-      release_date_precision?: string;
-    };
-    artists: Array<{
-      name: string;
-      external_urls: { spotify: string };
-    }>;
-    external_urls: { spotify: string };
+    album: Album & { release_date?: string; release_date_precision?: string };
+    artists: Artist[];
+    external_urls: ExternalUrls;
   };
 };
 
 export type LikeSongsResponse = {
   items: Array<{
-    track: {
-      album: DefaultItem2;
-      name: string;
-      duration_ms: number;
-      uri: string;
-    };
+    track: Track & { album: Album };
   }>;
   total: number;
   offset: number;
@@ -145,9 +104,7 @@ export type LikeSongsResponse = {
 
 export type RecentResponse = {
   items: Array<{
-    track: {
-      album: DefaultItem2;
-    };
+    track: { album: Album };
   }>;
   total: number;
   offset: number;
