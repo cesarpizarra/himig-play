@@ -5,6 +5,7 @@ import usePlaySong from "@/app/hooks/usePlaySong";
 import { useAlbum } from "@/app/hooks/useSpotify";
 import { getDominantColor } from "@/app/util/colorUtil";
 import { formatDuration } from "@/app/util/formatDuration";
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { FaClock, FaPlay } from "react-icons/fa";
 import { GoDotFill } from "react-icons/go";
@@ -45,10 +46,12 @@ const Album = ({
         style={{ background: bgColor }}
       >
         {data && data?.images.length > 0 && (
-          <img
+          <Image
             src={data?.images[0]?.url}
             alt={data?.name}
             className="h-44 w-44 rounded-md object-cover"
+            width={160}
+            height={160}
           />
         )}
         <div>

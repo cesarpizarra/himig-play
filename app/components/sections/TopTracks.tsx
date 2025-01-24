@@ -5,6 +5,7 @@ import { formatDuration } from "@/app/util/formatDuration";
 import { FaPlay } from "react-icons/fa";
 import usePlaySong from "@/app/hooks/usePlaySong";
 import Link from "next/link";
+import Image from "next/image";
 
 interface Props {
   topTracks: TopTrack[] | null | undefined;
@@ -61,10 +62,12 @@ const TopTracksSection: React.FC<Props> = ({ topTracks, isLoading, error }) => {
                   </td>
 
                   <td className="flex items-center px-4 py-2">
-                    <img
+                    <Image
                       src={track.album.images[0]?.url}
                       alt={track.name}
                       className="h-12 w-12 rounded-md object-cover"
+                      width={48}
+                      height={48}
                     />
                     <div className="ml-4 text-sm font-semibold text-white">
                       <h3>{track.name}</h3>

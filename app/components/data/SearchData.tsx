@@ -1,6 +1,7 @@
 import usePlaySong from "@/app/hooks/usePlaySong";
 import { SearchResult } from "@/app/types/spotify";
 import { formatDuration } from "@/app/util/formatDuration";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { FaPlay } from "react-icons/fa";
@@ -26,10 +27,12 @@ export default function SearchData({
                   className="group relative cursor-pointer rounded-lg bg-base-100 p-4 hover:bg-base-200"
                 >
                   <Link href={`/himig/album/${firstTrack.album.id}`}>
-                    <img
+                    <Image
                       src={firstTrack.album.images[0]?.url}
                       alt={firstTrack.name}
                       className="h-32 w-32 rounded-md object-cover"
+                      width={160}
+                      height={160}
                     />
                     <h4 className="text-md font-semibold md:text-2xl">
                       {firstTrack.name}
@@ -96,10 +99,12 @@ export default function SearchData({
                       />
                     </td>
                     <td className="flex items-center px-4 py-2">
-                      <img
+                      <Image
                         src={track.album.images[0]?.url}
                         alt={track.name}
                         className="h-12 w-12 rounded-md object-cover"
+                        width={48}
+                        height={48}
                       />
                       <div className="ml-4 text-sm font-semibold text-white">
                         <h3>{track.name}</h3>
@@ -138,10 +143,12 @@ export default function SearchData({
                 className="group flex transform cursor-pointer flex-col items-center p-2 transition-transform duration-200 ease-in-out hover:scale-105 hover:bg-base-100"
               >
                 <Link href={`/himig/artist/album/${artist.id}`}>
-                  <img
+                  <Image
                     src={artist.images[0]?.url}
                     alt={artist.name}
                     className="h-32 w-32 rounded-full object-cover shadow-lg md:h-40 md:w-40"
+                    width={160}
+                    height={160}
                   />
                   <div className="mt-2 text-center text-sm font-semibold text-white">
                     <h3>{artist.name}</h3>
@@ -179,10 +186,12 @@ export default function SearchData({
                     href={`/himig/${item.type === "album" ? `album/${item.id}` : `artist/album/${item.id}`}`}
                   >
                     <div className="relative flex items-center justify-center">
-                      <img
+                      <Image
                         src={item.images[0].url}
                         alt={item.name}
                         className="h-40 w-40 rounded-lg object-cover shadow-md md:h-48 md:w-48"
+                        width={160}
+                        height={160}
                       />
                       {/* Play button overlay */}
                       <button

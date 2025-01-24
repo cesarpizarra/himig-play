@@ -6,6 +6,7 @@ import Error from "../common/Error";
 import SkeletonLoader from "../common/SkeletonLoader";
 import { FaHeart } from "react-icons/fa";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Sidebar() {
   const { data: playlistData, isLoading, error } = usePlaylist();
@@ -52,10 +53,12 @@ export default function Sidebar() {
           playlists.map((playlist) => (
             <Link key={playlist.id} href={`/himig/playlist/${playlist.id}`}>
               <div className="flex cursor-pointer rounded-md p-2 transition-all duration-300 hover:bg-gray-200 hover:bg-opacity-15">
-                <img
+                <Image
                   src={playlist.images[0]?.url}
                   alt={playlist.name}
                   className="h-12 w-12 rounded-md object-cover"
+                  width={48}
+                  height={48}
                 />
                 <div className="ml-4 mt-2 text-sm font-semibold text-white">
                   <h1>{playlist.name}</h1>
@@ -76,10 +79,12 @@ export default function Sidebar() {
           albums.map((album) => (
             <Link href={`/himig/album/${album.album.id}`} key={album.album.id}>
               <div className="flex cursor-pointer rounded-md p-2 transition-all duration-300 hover:bg-gray-200 hover:bg-opacity-15">
-                <img
+                <Image
                   src={album.album.images[0]?.url}
                   alt={album.album.name}
                   className="h-12 w-12 rounded-md object-cover"
+                  width={48}
+                  height={48}
                 />
                 <div className="ml-4 mt-2 text-sm font-semibold text-white">
                   <h1>{album.album.name}</h1>

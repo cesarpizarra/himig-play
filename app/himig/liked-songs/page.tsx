@@ -10,6 +10,7 @@ import { formatDuration } from "@/app/util/formatDuration";
 import Loading from "@/app/components/common/Loading";
 import Error from "@/app/components/common/Error";
 import Link from "next/link";
+import Image from "next/image";
 
 const LikedSongs = () => {
   const { data: profile } = useProfile();
@@ -34,10 +35,12 @@ const LikedSongs = () => {
           </h1>
           {profile && profile?.images.length > 0 ? (
             <div className="flex items-center gap-2">
-              <img
+              <Image
                 src={profile?.images[0]?.url}
                 alt={profile?.display_name}
                 className="h-8 w-8 rounded-full object-cover"
+                width={32}
+                height={32}
               />
               <GoDotFill />
               <p className="text-xs">{trackData?.total || 0} songs</p>
@@ -76,10 +79,12 @@ const LikedSongs = () => {
                   />
                 </td>
                 <td className="inline-flex items-center gap-2 px-4 py-2">
-                  <img
+                  <Image
                     src={item.track.album.images[0]?.url}
                     alt={item.track.name}
                     className="h-12 w-12 rounded-l-md object-cover"
+                    width={48}
+                    height={48}
                   />
                   <p className="max-w-[250px] truncate">{item.track.name}</p>{" "}
                 </td>

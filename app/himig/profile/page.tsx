@@ -13,6 +13,7 @@ import TopTracksSection from "@/app/components/sections/TopTracks";
 import TopArtistsSection from "@/app/components/sections/TopArtists";
 import FollowedArtistsSection from "@/app/components/sections/Followed";
 import { getDominantColor } from "@/app/util/colorUtil";
+import Image from "next/image";
 
 export default function UserProfile() {
   const { data: profile, isLoading, error } = useProfile();
@@ -49,10 +50,12 @@ export default function UserProfile() {
         style={{ background: gradientStyle }}
       >
         {profile && profile?.images.length > 0 ? (
-          <img
+          <Image
             src={profile?.images[0]?.url}
             alt={profile?.display_name}
             className="h-32 w-32 rounded-full object-cover"
+            width={128}
+            height={128}
           />
         ) : (
           <div className="rounded-full bg-base-300 p-4">

@@ -5,6 +5,7 @@ import Error from "../common/Error";
 import Link from "next/link";
 import usePlaySong from "@/app/hooks/usePlaySong";
 import { FaPlay } from "react-icons/fa";
+import Image from "next/image";
 
 interface Card2Props {
   data: TopArtist[] | undefined;
@@ -46,10 +47,12 @@ const Card2: React.FC<Card2Props> = ({
                 <Link
                   href={`/himig/${item.type === "album" ? `album/${item.id}` : `artist/album/${item.id}`}`}
                 >
-                  <img
+                  <Image
                     src={item.images[0].url}
                     alt={item.name}
                     className="h-32 w-32 rounded-md object-cover shadow-lg md:h-40 md:w-40"
+                    width={160}
+                    height={160}
                   />
 
                   <div className="mt-2 text-center text-sm font-semibold text-white">

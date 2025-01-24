@@ -4,6 +4,7 @@ import SkeletonLoader from "@/app/components/common/SkeletonLoader";
 import usePlaySong from "@/app/hooks/usePlaySong";
 import { FaPlay } from "react-icons/fa";
 import Link from "next/link";
+import Image from "next/image";
 
 interface Props {
   following: TopArtist[] | null | undefined;
@@ -35,10 +36,12 @@ const FollowedArtistsSection: React.FC<Props> = ({
               className="group flex transform cursor-pointer flex-col items-center p-2 transition-transform duration-200 ease-in-out hover:scale-105 hover:bg-base-100"
             >
               <Link href={`/himig/artist/album/${artist.id}`}>
-                <img
+                <Image
                   src={artist.images[0]?.url}
                   alt={artist.name}
                   className="h-32 w-32 rounded-full object-cover shadow-lg md:h-40 md:w-40"
+                  width={160}
+                  height={160}
                 />
                 <div className="mt-2 text-center text-sm font-semibold text-white">
                   <h3>{artist.name}</h3>

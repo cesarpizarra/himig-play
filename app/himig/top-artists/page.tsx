@@ -3,6 +3,7 @@ import Error from "@/app/components/common/Error";
 import Loading from "@/app/components/common/Loading";
 import usePlaySong from "@/app/hooks/usePlaySong";
 import { useTopArtists } from "@/app/hooks/useSpotify";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { FaPlay } from "react-icons/fa";
@@ -26,10 +27,12 @@ export default function TopArtists() {
           >
             <Link href={`/himig/artist/album/${item.id}`}>
               <div className="relative flex flex-col items-center justify-center">
-                <img
+                <Image
                   src={item.images[0].url}
                   alt={item.name}
                   className="h-32 w-32 rounded-md object-cover shadow-lg md:h-40 md:w-40"
+                  width={160}
+                  height={160}
                 />
                 <div className="mt-2 flex flex-col items-center text-center text-sm font-semibold text-white">
                   <h3 className="max-w-[150px] truncate">{item.name}</h3>

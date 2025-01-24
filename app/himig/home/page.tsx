@@ -10,6 +10,7 @@ import {
   useRecent,
   useTopArtists,
 } from "@/app/hooks/useSpotify";
+import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import { FaHeart, FaPlay } from "react-icons/fa";
@@ -108,10 +109,12 @@ export default function Home() {
 
                 <Link href={`/himig/playlist/${playlist.id}`}>
                   <div className="flex items-center gap-3">
-                    <img
+                    <Image
                       src={playlist.images[0]?.url}
                       alt={playlist.name}
                       className="h-12 w-12 rounded-l-md object-cover"
+                      width={48}
+                      height={48}
                     />
                     <div>
                       <p className="text-xs">{playlist.name}</p>
@@ -140,10 +143,12 @@ export default function Home() {
                 </button>
                 <Link href={`/himig/album/${album.album.id}`}>
                   <div className="flex items-center gap-3">
-                    <img
+                    <Image
                       src={album.album.images[0].url}
                       alt={album.album.name}
                       className="h-12 w-12 rounded-l-md object-cover"
+                      width={48}
+                      height={48}
                     />
                     <div>
                       <p className="text-xs"> {album.album.name}</p>

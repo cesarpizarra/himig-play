@@ -5,6 +5,7 @@ import Link from "next/link";
 import usePlaySong from "@/app/hooks/usePlaySong";
 import { FaPlay } from "react-icons/fa";
 import { Album } from "@/app/types/spotify";
+import Image from "next/image";
 
 interface CardProps {
   data: Array<{ track: { album: Album; uri: string } }> | null | undefined;
@@ -44,10 +45,12 @@ const Card: React.FC<CardProps> = ({
                 className="group flex-shrink-0 transform cursor-pointer flex-col items-center bg-base-100 p-2 transition-transform duration-200 ease-in-out hover:scale-105"
               >
                 <Link href={`/himig/album/${item.track.album.id}`}>
-                  <img
+                  <Image
                     src={item.track.album.images[0]?.url}
                     alt={item.track.album.name}
                     className="h-32 w-32 rounded-md object-cover shadow-lg md:h-40 md:w-40"
+                    width={160}
+                    height={160}
                   />
 
                   {/* Track Info */}

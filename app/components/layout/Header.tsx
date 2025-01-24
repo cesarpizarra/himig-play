@@ -87,10 +87,12 @@ export default function Header() {
               {isLoading ? (
                 <span className="loading loading-spinner loading-xs"></span>
               ) : data && data.images.length > 0 ? (
-                <img
+                <Image
                   src={data?.images[0]?.url}
                   alt={data?.display_name}
                   className="h-32 w-32 rounded-full object-cover"
+                  width={32}
+                  height={32}
                 />
               ) : (
                 <h1 className="text-xl uppercase text-white">

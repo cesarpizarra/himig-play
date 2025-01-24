@@ -7,6 +7,7 @@ import React from "react";
 import { FaPlay } from "react-icons/fa";
 import Link from "next/link";
 import { Album } from "@/app/types/spotify";
+import Image from "next/image";
 
 type Track = {
   track: {
@@ -33,10 +34,12 @@ export default function RecentlyPlayed() {
             className="group flex-shrink-0 transform cursor-pointer flex-col items-center p-2 transition-transform duration-200 ease-in-out hover:scale-105 hover:bg-base-100"
           >
             <Link href={`/himig/album/${item.track.album.id}`}>
-              <img
+              <Image
                 src={item.track.album.images[0]?.url}
                 alt={item.track.album.name}
                 className="h-32 w-32 rounded-md object-cover shadow-lg md:h-40 md:w-40"
+                width={160}
+                height={160}
               />
 
               {/* Track Info */}

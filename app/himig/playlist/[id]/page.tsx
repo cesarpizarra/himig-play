@@ -5,6 +5,7 @@ import usePlaySong from "@/app/hooks/usePlaySong";
 import { usePlaylistById } from "@/app/hooks/useSpotify";
 import { getDominantColor } from "@/app/util/colorUtil";
 import { formatDuration } from "@/app/util/formatDuration";
+import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { FaClock, FaPlay } from "react-icons/fa";
@@ -45,10 +46,12 @@ const Playlist = ({
         style={{ background: bgColor }}
       >
         {data && data?.images.length > 0 && (
-          <img
+          <Image
             src={data?.images[0]?.url}
             alt={data?.name}
             className="h-44 w-44 rounded-md object-cover"
+            width={160}
+            height={160}
           />
         )}
         <div>
@@ -90,10 +93,12 @@ const Playlist = ({
                   />
                 </td>
                 <td className="flex items-center gap-3 px-4 py-2">
-                  <img
+                  <Image
                     src={item.track.album.images[0]?.url}
                     alt={item.track.name}
                     className="h-12 w-12 rounded-md object-cover"
+                    width={48}
+                    height={48}
                   />
                   <div className="w-40 overflow-hidden text-ellipsis whitespace-nowrap">
                     {item.track.name}

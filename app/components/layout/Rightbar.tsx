@@ -2,6 +2,7 @@
 import { useCurrentPlaying } from "@/app/hooks/useSpotify";
 import React, { useEffect, useState } from "react";
 import SkeletonLoader from "../common/SkeletonLoader";
+import Image from "next/image";
 
 interface Track {
   item: {
@@ -54,10 +55,12 @@ export default function Rightbar() {
               {currentTrack.item.name}
             </h1>
             <div className="mb-6 flex flex-col items-center text-center">
-              <img
+              <Image
                 src={currentTrack.item.album.images[0]?.url}
                 alt={currentTrack.item.name}
                 className="rounded-md object-cover"
+                width={200}
+                height={200}
               />
               <div className="mt-4 space-y-2">
                 <p className="text-sm text-gray-400">

@@ -3,6 +3,7 @@ import Error from "@/app/components/common/Error";
 import Loading from "@/app/components/common/Loading";
 import usePlaySong from "@/app/hooks/usePlaySong";
 import { useArtistAlbum } from "@/app/hooks/useSpotify";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { FaPlay } from "react-icons/fa";
@@ -43,7 +44,7 @@ const Album = ({
     <div className="min-h-screen rounded-md">
       {/* Album Section */}
       <div className="p-4">
-        <h1 className="mb-4 text-xl font-semibold">Artist's Albums</h1>
+        <h1 className="mb-4 text-xl font-semibold">Artist&apos;s Albums</h1>
         <div className="p-4">
           <table className="w-full table-auto border-collapse text-left text-sm">
             <thead>
@@ -69,10 +70,12 @@ const Album = ({
                     />
                   </td>
                   <td className="flex items-center gap-3 px-4 py-2">
-                    <img
+                    <Image
                       src={item.images[0]?.url}
                       alt={item.name}
                       className="h-12 w-12 rounded-md object-cover"
+                      width={48}
+                      height={48}
                     />
                     <div className="w-40 overflow-hidden text-ellipsis whitespace-nowrap">
                       {item.name}
