@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect } from "react";
-import { FaGithub, FaHome, FaSearch } from "react-icons/fa";
+import { FaHome, FaSearch } from "react-icons/fa";
 import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
 export default function Header() {
   const { data, isLoading } = useProfile();
@@ -29,7 +29,7 @@ export default function Header() {
   }, [pathName, setSearchQuery]);
   return (
     <header className="sticky top-0 z-50 bg-dark">
-      <nav className="navbar py-4">
+      <nav className="navbar gap-2 py-4">
         <div className="navbar-start">
           <Link href="/himig/home" className="justify-between">
             <Image src="/logo.png" width={50} height={50} alt="logo" />
@@ -53,38 +53,31 @@ export default function Header() {
           </div>
         </div>
 
-        <div className="navbar-center hidden md:flex">
-          <div data-tip="Home" className="tooltip tooltip-bottom">
+        <div className="navbar-center flex-grow">
+          <div
+            data-tip="Home"
+            className="tooltip tooltip-bottom hidden md:block"
+          >
             <Link href="/himig/home" className="btn btn-circle mr-5 text-white">
               <FaHome size={25} />
             </Link>
           </div>
-          <label className="input input-bordered flex items-center gap-2">
-            <FaSearch size={15} />
-
+          <label className="relative w-full max-w-md md:max-w-lg">
+            <FaSearch
+              size={15}
+              className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500"
+            />
             <input
               type="text"
               value={searchQuery}
               onChange={handleSearchChange}
-              className="w-96 grow text-sm"
+              className="input input-bordered w-full pl-10 text-sm sm:w-64 md:w-96"
               placeholder="What do you want to play?"
             />
           </label>
         </div>
 
         <div className="navbar-end">
-          <Link
-            href="https://github.com/cesarpizarra"
-            target="_blank"
-            className="mr-5 flex items-center gap-2 hover:underline"
-          >
-            <FaGithub size={20} className="cursor-pointer text-gray-400" />
-
-            <span className="text-xs font-medium text-gray-400 md:text-sm">
-              Made with Cezaru
-            </span>
-          </Link>
-
           <div className="dropdown dropdown-end">
             <button
               tabIndex={0}

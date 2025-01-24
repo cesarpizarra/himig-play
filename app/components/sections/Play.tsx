@@ -4,6 +4,8 @@ import SpotifyPlayer from "react-spotify-web-playback";
 import { useSession } from "next-auth/react";
 import { useCurrentPlaying } from "@/app/hooks/useSpotify";
 import { CurrentPlayingTrack } from "@/app/types/spotify";
+import Link from "next/link";
+import { FaGithub } from "react-icons/fa";
 
 export default function Play() {
   const { data: session, status } = useSession();
@@ -48,6 +50,17 @@ export default function Play() {
 
   return (
     <div className="sticky bottom-0 z-50 w-full overflow-x-hidden bg-black pb-4 pt-7">
+      <Link
+        href="https://github.com/cesarpizarra"
+        target="_blank"
+        className="mr-5 flex items-center gap-2 hover:underline"
+      >
+        <FaGithub size={20} className="cursor-pointer text-gray-400" />
+
+        <span className="text-xs font-medium text-gray-400 md:text-sm">
+          Made with Cezaru
+        </span>
+      </Link>
       {/* <SpotifyPlayer
         token={token}
         showSaveIcon
