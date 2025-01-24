@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-dark">
       <div className="flex min-h-screen items-center justify-center">
-        <div className="flex items-center space-x-5">
+        <div className="flex items-center p-2">
           <Image
             src="/logo.png"
             width={500}
