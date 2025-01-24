@@ -5,12 +5,12 @@ import usePlaySong from "@/app/hooks/usePlaySong";
 import { useRecent } from "@/app/hooks/useSpotify";
 import React from "react";
 import { FaPlay } from "react-icons/fa";
-import { DefaultItem2 } from "@/app/types/spotify";
 import Link from "next/link";
+import { Album } from "@/app/types/spotify";
 
 type Track = {
   track: {
-    album: DefaultItem2;
+    album: Album;
     uri: string;
   };
 };
